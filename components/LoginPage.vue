@@ -1,6 +1,7 @@
 <template>
 <div>
-    <div v-if="isSubmitted">
+    <!-- <div v-if="userdata.length"> -->
+        <div v-if="isSubmitted">
      <AppMenu/>
     <CustomerList />
     </div>
@@ -14,7 +15,7 @@
                         <label for="email" class="h2 text-muted">Email:</label>
                     </div>
                     <div class="col-md-8">
-                         <input v-model="form.email" class="form-control p-4"  placeholder="Enter Email" />
+                         <input v-model="form.email" type="email" class="form-control p-4"  placeholder="Enter Email" />
                          <span class="text-muted ml-2">We Do Not Share Your Information </span>
                     </div>
             </div>
@@ -37,9 +38,10 @@
 </template>
 <script>
 
-// import {mapState} from 'vuex';
+import {mapState} from 'vuex';
 import CustomerList from './CustomerList.vue'
 import AppMenu from './AppMenu.vue';
+import swal from 'sweetalert';
 
 export default {
     data(){
@@ -62,14 +64,19 @@ export default {
             email:this.form.email,
             password:this.form.password
         }
-        this.isSubmitted=true
-        this.$store.commit('addUser',formData)
-        this.form.email=''
-        this.form.password=''
+        if(this.form.email.length>0 && this.form.password.length>0){
+              this.isSubmitted=true
+              this.$store.commit('addUser',formData)
+              this.form.email=''
+              this.form.password=''
+        }else{
+            swal('Fields Required')
+        }
+      
       }
     },
     computed:{
-        // ...mapState(['userdata']),
+        ...mapState(['userdata']),
         // user(){
         //     return this.$store.state.userdata
         // }

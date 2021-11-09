@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-light">
         <LoginPage/>
     </div>
 </template>
@@ -12,6 +12,6 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="css">
     
 </style>

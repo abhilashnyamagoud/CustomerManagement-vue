@@ -50,12 +50,19 @@ export default {
         onSubmit(event){
             event.preventDefault()
             const formData={
+                id:new Date().getTime(),
                 name:this.form.name,
                 email:this.form.email,
                 country:this.form.country,
                 phone:this.form.phone
             }
              this.$store.commit('addCustomer',formData);
+                    swal({
+                     title:"Congrats",
+                     text:"You Added Record" ,
+                     icon:"success",
+                     buttons:"Ok"
+})
              this.form.name=''
              this.form.email=''
              this.form.country=''

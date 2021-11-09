@@ -5,10 +5,7 @@
     <nuxt-link class="nav-link text-light" exact to="/" >Customers</nuxt-link>
   </li>
    <li class="nav-item">
-    <nuxt-link class="nav-link text-light" exact to="/customermanagement" >Customer Management</nuxt-link>
-  </li>
-   <li class="nav-item">
-    <nuxt-link class="nav-link text-light" exact to="/orders" >Orders</nuxt-link>
+    <nuxt-link class="nav-link text-light" exact to="/order" >Orders</nuxt-link>
   </li>
    <li class="nav-item">
     <nuxt-link class="nav-link text-light" exact to="/" >Logout</nuxt-link>

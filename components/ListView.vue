@@ -12,13 +12,13 @@
                    </tr>
                </thead>
                <tbody>
-                   <tr v-for="cust in customers" :key="cust.name">
+                   <tr v-for="cust in datasource" :key="cust.id">
                        <td>{{cust.name}} </td>
                        <td>{{cust.country}} </td>
                        <td>{{cust.phone}} </td>
                        <td>{{cust.email}} </td>
                        <td> <button class="btn btn-dark p-2">Edit</button> </td>
-                       <td> <button @click="showModel(cust)" class="btn btn-dark btn-outline-warning text-light p-2">Show Details</button> </td>
+                       <td> <button @click="showModel(cust)" class="btn btn-dark btn-outline-danger text-light p-2">Delete</button> </td>
                    </tr>
                </tbody>
            </table>
@@ -33,14 +33,23 @@ export default {
     computed:{
         ...mapState(['customers'])
     },
+    props:{
+        datasource:{
+            type:[Array,Object], 
+        }
+    },
     methods:{
         showModel(cust){
+            const confirmRemove=window.confirm("Are You Sure")
+            if(confirmRemove){
+                 this.$store.commit('deleteCust',cust.id);
             swal({
-       title: cust.name,
-       text: cust.country,
+       title: "You deleted the record",
+       text: cust.name,
        icon:"success",
        buttons:"Ok"
-});
+       });
+            }
         }
     }
 }

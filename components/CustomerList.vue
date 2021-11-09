@@ -8,17 +8,17 @@
             <h4 class="p-2 ml-4 "><button @click="handleAdd" class="btn btn-secondary btn-outline-primary text-light">Add customer</button>   </h4>
             <div class="col-md-4 mt-2 d-flex justify-content-end">
             <label for="filter" class="h4">Filter: </label>
-            <input type="text" class="form-control" />
+            <input type="text" v-model="search" class="form-control" placeholder="Search" />
             </div>
         </div>
     </div>
-    <CardView v-if="toggle" />
-    <ListView v-if="toggleListView"/>
+    <CardView v-if="toggle" :datasource="filteredCustomers" />
+    <ListView v-if="toggleListView" :datasource="filteredCustomers" />
     <AddCustomer v-if="toggleAdd"/>
 </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+// import {mapState} from 'vuex'
 import CardView from './CardView.vue';
 import ListView from './ListView.vue';
 import AddCustomer from './AddCustomer.vue'
@@ -27,7 +27,8 @@ export default {
         return {
             toggle:true,
             toggleListView:false,
-            toggleAdd:false
+            toggleAdd:false,
+            search:''
         }
     },
     components:{
@@ -53,10 +54,20 @@ export default {
         }
     },
     computed: {
-    // customers() {
-    //   return this.$store.state.customers;
-    // }
-    ...mapState(['customers'])
+    customers() {
+      return this.$store.state.customers;
+    },
+    // ...mapState(['customers']),
+    filteredCustomers(){
+        if(this.search){
+            return this.customers.filter((el)=>{
+                let res=el.name.toLowerCase()
+                return res.includes(this.search)
+            });
+        }
+        return this.customers;
+    }
+
     }
 }
 </script>
