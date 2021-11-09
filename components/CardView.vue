@@ -35,16 +35,16 @@ export default {
 <style lang="css" scoped>
     @media (min-width: 600px){
         .align{
-        margin-left: 250px;
-        margin-right: 100px;
+        margin-left: 200px;
+        margin-right:auto
     }
-   
-    }
-    .allign{
-        width: 300px;
-        height: 300px;
+     .allign{
+        width: 400px;
+        /* height: 300px; */
         margin: 10px;
     }
+    }
+   
     /* .align{
         margin-left: 250px;
         margin-right: 100px;
