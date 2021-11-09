@@ -17,7 +17,7 @@
                        <td>{{cust.country}} </td>
                        <td>{{cust.phone}} </td>
                        <td>{{cust.email}} </td>
-                       <td> <button class="btn btn-dark p-2">Edit</button> </td>
+                       <td><nuxt-link :to="`/orders/${cust.id}`" class="btn btn-dark p-2">Show Orders</nuxt-link> </td>
                        <td> <button @click="showModel(cust)" class="btn btn-dark btn-outline-danger text-light p-2">Delete</button> </td>
                    </tr>
                </tbody>

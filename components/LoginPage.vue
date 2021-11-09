@@ -1,7 +1,7 @@
 <template>
 <div>
-    <!-- <div v-if="userdata.length"> -->
-        <div v-if="isSubmitted">
+    <div v-if="userdata.length">
+        <!-- <div v-if="isSubmitted"> -->
      <AppMenu/>
     <CustomerList />
     </div>
@@ -50,7 +50,7 @@ export default {
                 email:'',
                 password:''
             },
-             isSubmitted:true
+            //  isSubmitted:false,
         }
     },
     components:{
@@ -64,23 +64,26 @@ export default {
             email:this.form.email,
             password:this.form.password
         }
+        // localStorage.setItem('user',JSON.stringify(formData))
         if(this.form.email.length>0 && this.form.password.length>0){
-              this.isSubmitted=true
+            //   this.isSubmitted=true
               this.$store.commit('addUser',formData)
               this.form.email=''
               this.form.password=''
         }else{
             swal('Fields Required')
         }
-      
+            // if(JSON.parse(localStorage.getItem('user'))){
+            //      this.isSubmitted=true
+            // }   
       }
     },
     computed:{
         ...mapState(['userdata']),
-        // user(){
-        //     return this.$store.state.userdata
-        // }
-    }
+        user(){
+            return this.$store.state.userdata
+        }    
+    },    
 }
 </script>
 <style lang="scss">

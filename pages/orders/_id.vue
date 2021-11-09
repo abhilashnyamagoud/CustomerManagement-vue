@@ -1,12 +1,9 @@
 <template>
-    <div>
+    <div >
         <AppMenu/>
-        <div class="container">
-            <h1 class="display-3 mb-3 text-dark">All Customers Orders </h1>
-            <input type="text" class="form-control col-md-6 p-4" placeholder="search by name" v-model="search"  />
-             <div v-for="cust in filteredCustomers" :key="cust.id">
-                         <h2> {{cust.name}} </h2>
-                         <table class="table table-striped table-info table-hover">
+         <div class="container mt-5">
+             <h1>{{ filteredValue.name}}, Total orders are {{filteredValue.orders.length}} Numbers </h1>
+             <table class="table table-hover table-striped mt-5 table-bordered">
                              <thead>
                              <tr>
                                  <th>Product </th>
@@ -16,8 +13,8 @@
                                  <th>Total</th>
                              </tr>
                              </thead>
-                             <tbody >
-                                 <tr  v-for="order in cust.orders" :key="order.id">
+                             <tbody>
+                                 <tr v-for="order in filteredValue.orders" :key="order.id">
                                    <td>{{order.product}} </td>
                                    <td>{{order.date}} </td> 
                                    <td>{{order.quantity}}</td>
@@ -26,40 +23,34 @@
                                  </tr>
                              </tbody>
                          </table>
-             </div>
-        </div>
+       </div> 
     </div>
 </template>
-
 <script>
+import AppMenu from "@/components/AppMenu.vue";
 import {mapState} from 'vuex';
-
-import AppMenu from '../components/AppMenu.vue';
-
 export default {
-    data(){
-       return{
-           search:''
-       }
-    },
     components:{
         AppMenu
     },
-    
-    computed:{
-        ...mapState(['customers']),
-        filteredCustomers(){
-        if(this.search){
-            return this.customers.filter((el)=>{
-                let res=el.name.toLowerCase()
-                return res.includes(this.search)
-            });
+    data(){
+        return{
+            id:this.$route.params.id
         }
-        return this.customers;
-    }
-    }
+    },
+    computed:{
+        ...mapState(["customers"]),
+        filteredValue(){
+        return this.customers.find((ele)=>{
+            // console.log(ele)
+                return ele.id==this.id
+            })
+        }
+    },
+     
 }
 </script>
-<style lang="">
+<style lang="css" scoped>
+
     
 </style>
