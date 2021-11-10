@@ -7,7 +7,6 @@
             <h4 class="p-2 ml-4"><button class="btn btn-secondary btn-outline-primary text-light" @click="toggleHandleTable" >List View </button>  </h4>
             <h4 class="p-2 ml-4 "><button @click="handleAdd" class="btn btn-secondary btn-outline-primary text-light">Add customer</button>   </h4>
             <div class="col-md-4 mt-2 d-flex justify-content-end">
-            <label for="filter" class="h4">Filter: </label>
             <input type="text" v-model="search" class="form-control" placeholder="Search" />
             </div>
         </div>

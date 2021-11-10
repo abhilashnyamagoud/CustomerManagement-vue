@@ -1,13 +1,13 @@
 <template>
 <div>
-    <div v-if="userdata.length">
+    <div v-if="user.length">
         <!-- <div v-if="isSubmitted"> -->
      <AppMenu/>
     <CustomerList />
     </div>
     <div v-else>
     <div class="container mt-5" >
-        <h1 class="display-4"><b>  Login </b> </h1>
+        <h1 class="display-2 text-dark">  Login  </h1>
         <div class="card p-5 mt-5 bg-light">
         <form @submit="onSubmit">
             <div class="row mt-5">
@@ -42,6 +42,7 @@ import {mapState} from 'vuex';
 import CustomerList from './CustomerList.vue'
 import AppMenu from './AppMenu.vue';
 import swal from 'sweetalert';
+import validator from 'validator'
 
 export default {
     data(){
@@ -50,7 +51,7 @@ export default {
                 email:'',
                 password:''
             },
-            //  isSubmitted:false,
+             isSubmitted:true,
         }
     },
     components:{
@@ -65,13 +66,13 @@ export default {
             password:this.form.password
         }
         // localStorage.setItem('user',JSON.stringify(formData))
-        if(this.form.email.length>0 && this.form.password.length>0){
+        if(validator.isEmail(this.form.email) && this.form.password.length>0){
             //   this.isSubmitted=true
               this.$store.commit('addUser',formData)
               this.form.email=''
               this.form.password=''
         }else{
-            swal('Fields Required')
+            swal('Email Or Password Not Match')
         }
             // if(JSON.parse(localStorage.getItem('user'))){
             //      this.isSubmitted=true
