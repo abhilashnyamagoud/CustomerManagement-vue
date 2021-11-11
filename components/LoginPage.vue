@@ -68,11 +68,12 @@ export default {
         // localStorage.setItem('user',JSON.stringify(formData))
         if(validator.isEmail(this.form.email) && this.form.password.length>0){
             //   this.isSubmitted=true
+            swal("Good job!", "You Logged in !", "success");
               this.$store.commit('addUser',formData)
               this.form.email=''
               this.form.password=''
         }else{
-            swal('Email Or Password Not Match')
+            swal('Email Or Password invalid')
         }
             // if(JSON.parse(localStorage.getItem('user'))){
             //      this.isSubmitted=true
