@@ -33,21 +33,34 @@ export default {
 }
 </script>
 <style lang="css" scoped>
-    @media (min-width: 600px){
-        .align{
-        margin-left: 200px;
-        margin-right:auto
+    @media screen and (min-width: 1280px){
+       .align{
+        padding-left: 200px;
+        padding-right: 200px;
     }
-     .allign{
-        width: 400px;
-        /* height: 300px; */
-        margin: 10px;
+       .row{
+            /* padding: 0,200px,0,200px; */
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-gap: 20px;
     }
+     
     }
-   
-    /* .align{
-        margin-left: 250px;
-        margin-right: 100px;
-    } */
+     @media screen and (min-width: 500px) and (max-width:1280px) {
+       .align{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+       .row{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 20px;
+    }
+     
+    }
+
+     
+
+    
    
 </style>
