@@ -1,6 +1,10 @@
 <template>
     <div class="container mt-5">
-       <div class="row">
+        <div v-if="toggleEdit">
+             <button class="btn btn-lg btn-danger" @click="handleEdit">Cancel </button>
+         <EditCustomer  :toggle='toggleEdit' /> 
+        </div>
+       <div v-else class="row">
            <table class="table table-hover table-striped">
                <thead > 
                    <tr>
@@ -9,6 +13,7 @@
                        <th>Customer Phone </th>
                        <th>Customer Email </th>
                        <th> </th>
+                       <th></th>
                    </tr>
                </thead>
                <tbody>
@@ -19,6 +24,7 @@
                        <td>{{cust.email}} </td>
                        <td><nuxt-link :to="`/orders/${cust.id}`" class="btn btn-dark p-2">Show Orders</nuxt-link> </td>
                        <td> <button @click="showModel(cust)" class="btn btn-dark btn-outline-danger text-light p-2">Delete</button> </td>
+                       <td> <button @click="handleEdit(cust)" class="btn btn-dark btn-outline-success text-light btn-lg p-2">Edit</button>  </td>
                    </tr>
                </tbody>
            </table>
@@ -29,7 +35,16 @@
 <script>
 import swal from 'sweetalert'
 import {mapState} from 'vuex'
+import EditCustomer from './EditCustomer.vue'
 export default {
+    components:{
+        EditCustomer
+    },
+    data(){
+        return{
+            toggleEdit:false
+        }
+    },
     computed:{
         ...mapState(['customers'])
     },
@@ -50,6 +65,10 @@ export default {
        buttons:"Ok"
        });
             }
+        },
+        handleEdit(cust){
+            console.log(cust)
+            this.toggleEdit=!this.toggleEdit
         }
     }
 }

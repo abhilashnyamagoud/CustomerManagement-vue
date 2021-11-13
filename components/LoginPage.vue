@@ -1,7 +1,7 @@
 <template>
 <div>
-    <div v-if="user.length">
-        <!-- <div v-if="isSubmitted"> -->
+    <!-- <div v-if="user.length"> -->
+        <div v-if="isSubmitted">
      <AppMenu/>
     <CustomerList />
     </div>
