@@ -3,6 +3,7 @@
         <AppMenu/>
          <div class="container mt-5">
              <h1>{{ filteredValue.name}}, Total orders are {{filteredValue.orders.length}} Numbers </h1>
+             <button class="btn btn-lg btn-secondary"><nuxt-link to="/" class="text-light">Back</nuxt-link> </button>
              <table class="table table-hover table-striped mt-5 table-bordered">
                              <thead>
                              <tr>
