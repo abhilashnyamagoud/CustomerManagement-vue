@@ -33,7 +33,9 @@ export default {
 }
 </script>
 <style lang="css" scoped>
-    @media screen and (min-width: 1280px){
+
+
+    @media screen and (min-width: 1000px){
        .align{
         padding-left: 200px;
         padding-right: 200px;
@@ -46,7 +48,7 @@ export default {
     }
      
     }
-     @media screen and (min-width: 500px) and (max-width:1280px) {
+     @media screen and (min-width: 500px) and (max-width:1000px) {
        .align{
         padding-left: 100px;
         padding-right: 100px;
